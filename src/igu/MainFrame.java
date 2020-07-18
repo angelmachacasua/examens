@@ -51,8 +51,13 @@ public class MainFrame extends javax.swing.JFrame {
         theButton3.setColorTextNormal(new java.awt.Color(128, 128, 131));
         theButton3.setColorTextPressed(new java.awt.Color(128, 128, 131));
         theButton3.setFocusable(false);
+        theButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                theButton3ActionPerformed(evt);
+            }
+        });
 
-        theButton2.setBackground(new java.awt.Color(204, 204, 204));
+        theButton2.setBackground(new java.awt.Color(239, 238, 244));
         theButton2.setForeground(new java.awt.Color(128, 128, 131));
         theButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/imgs/icons/market.png"))); // NOI18N
         theButton2.setText("COMPRAS");
@@ -74,7 +79,7 @@ public class MainFrame extends javax.swing.JFrame {
         menubarLayout.setHorizontalGroup(
             menubarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menubarLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(theButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(theButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -83,7 +88,7 @@ public class MainFrame extends javax.swing.JFrame {
         menubarLayout.setVerticalGroup(
             menubarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menubarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(theButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(theButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(theButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -101,7 +106,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         dpLayout.setVerticalGroup(
             dpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -137,6 +142,10 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         new ChangePanel(mainPanel, new ComprasMainPanel());
     }//GEN-LAST:event_theButton2ActionPerformed
+
+    private void theButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_theButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_theButton3ActionPerformed
 
     /**
      * @param args the command line arguments
