@@ -43,7 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
         theButton3.setBackground(new java.awt.Color(239, 238, 244));
         theButton3.setForeground(new java.awt.Color(128, 128, 131));
         theButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/imgs/icons/collection.png"))); // NOI18N
-        theButton3.setText("VENTAS");
+        theButton3.setText("Crear tarea");
         theButton3.setColorHover(new java.awt.Color(204, 204, 204));
         theButton3.setColorNormal(new java.awt.Color(239, 238, 244));
         theButton3.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -51,6 +51,11 @@ public class MainFrame extends javax.swing.JFrame {
         theButton3.setColorTextNormal(new java.awt.Color(128, 128, 131));
         theButton3.setColorTextPressed(new java.awt.Color(128, 128, 131));
         theButton3.setFocusable(false);
+        theButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                theButton3ActionPerformed(evt);
+            }
+        });
 
         theButton2.setBackground(new java.awt.Color(204, 204, 204));
         theButton2.setForeground(new java.awt.Color(128, 128, 131));
@@ -137,6 +142,10 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         new ChangePanel(mainPanel, new ComprasMainPanel());
     }//GEN-LAST:event_theButton2ActionPerformed
+
+    private void theButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_theButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_theButton3ActionPerformed
 
     /**
      * @param args the command line arguments
