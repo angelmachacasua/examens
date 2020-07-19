@@ -46,7 +46,7 @@ public class ComprasMainPanel extends javax.swing.JPanel {
         clientesButton.setBackground(new java.awt.Color(239, 238, 244));
         clientesButton.setForeground(new java.awt.Color(128, 128, 131));
         clientesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/imgs/icons/feeedback.png"))); // NOI18N
-        clientesButton.setText("Nuevo");
+        clientesButton.setText("Nueva Tarea");
         clientesButton.setColorHover(new java.awt.Color(204, 204, 204));
         clientesButton.setColorNormal(new java.awt.Color(239, 238, 244));
         clientesButton.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -90,7 +90,7 @@ public class ComprasMainPanel extends javax.swing.JPanel {
         clientesButton1.setBackground(new java.awt.Color(239, 238, 244));
         clientesButton1.setForeground(new java.awt.Color(128, 128, 131));
         clientesButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/imgs/icons/feeedback.png"))); // NOI18N
-        clientesButton1.setText("CLIENTES");
+        clientesButton1.setText("ddd");
         clientesButton1.setColorHover(new java.awt.Color(204, 204, 204));
         clientesButton1.setColorNormal(new java.awt.Color(239, 238, 244));
         clientesButton1.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -116,11 +116,11 @@ public class ComprasMainPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(comprasButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(25, 25, 25)
                 .addComponent(clientesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(37, 37, 37)
                 .addComponent(clientesButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(393, Short.MAX_VALUE))
+                .addContainerGap(343, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
