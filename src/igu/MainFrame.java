@@ -5,8 +5,10 @@
  */
 package igu;
 
+import igu.ayudas.panel.ayudasPanel;
 import igu.compras.ComprasMainPanel;
 import igu.compras.clientes.ClientesPanel;
+import igu.compras.panels.ComprasPanel;
 
 /**
  *
@@ -21,7 +23,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         new ChangePanel(mainPanel, new ComprasMainPanel());
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,7 +146,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_theButton2ActionPerformed
 
     private void theButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_theButton3ActionPerformed
-        new ChangePanel(mainPanel, new ClientesPanel());
+        new ChangePanel(mainPanel, new ayudasPanel());
         // TODO add your handling code here:
     }//GEN-LAST:event_theButton3ActionPerformed
 
