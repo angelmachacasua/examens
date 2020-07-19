@@ -6,6 +6,7 @@
 package igu;
 
 import igu.compras.ComprasMainPanel;
+import igu.compras.clientes.ClientesPanel;
 
 /**
  *
@@ -43,7 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
         theButton3.setBackground(new java.awt.Color(239, 238, 244));
         theButton3.setForeground(new java.awt.Color(128, 128, 131));
         theButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/imgs/icons/collection.png"))); // NOI18N
-        theButton3.setText("VENTAS");
+        theButton3.setText("AYUDA");
         theButton3.setColorHover(new java.awt.Color(204, 204, 204));
         theButton3.setColorNormal(new java.awt.Color(239, 238, 244));
         theButton3.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -57,10 +58,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        theButton2.setBackground(new java.awt.Color(239, 238, 244));
         theButton2.setForeground(new java.awt.Color(128, 128, 131));
         theButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/imgs/icons/market.png"))); // NOI18N
-        theButton2.setText("COMPRAS");
+        theButton2.setText("GESTOR DE TAREAS");
         theButton2.setColorHover(new java.awt.Color(204, 204, 204));
         theButton2.setColorNormal(new java.awt.Color(204, 204, 204));
         theButton2.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -80,8 +80,8 @@ public class MainFrame extends javax.swing.JFrame {
             menubarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menubarLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(theButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(theButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(theButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -144,6 +144,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_theButton2ActionPerformed
 
     private void theButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_theButton3ActionPerformed
+        new ChangePanel(mainPanel, new ClientesPanel());
         // TODO add your handling code here:
     }//GEN-LAST:event_theButton3ActionPerformed
 
