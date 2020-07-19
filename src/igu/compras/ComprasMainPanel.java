@@ -46,7 +46,7 @@ public class ComprasMainPanel extends javax.swing.JPanel {
         clientesButton.setBackground(new java.awt.Color(239, 238, 244));
         clientesButton.setForeground(new java.awt.Color(128, 128, 131));
         clientesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/imgs/icons/feeedback.png"))); // NOI18N
-        clientesButton.setText("CLIENTES");
+        clientesButton.setText("Nuevo");
         clientesButton.setColorHover(new java.awt.Color(204, 204, 204));
         clientesButton.setColorNormal(new java.awt.Color(239, 238, 244));
         clientesButton.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -68,7 +68,7 @@ public class ComprasMainPanel extends javax.swing.JPanel {
         comprasButton.setBackground(new java.awt.Color(204, 204, 204));
         comprasButton.setForeground(new java.awt.Color(128, 128, 131));
         comprasButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/imgs/icons/market.png"))); // NOI18N
-        comprasButton.setText("COMPRAS");
+        comprasButton.setText("Pendientes");
         comprasButton.setColorHover(new java.awt.Color(204, 204, 204));
         comprasButton.setColorNormal(new java.awt.Color(204, 204, 204));
         comprasButton.setColorPressed(new java.awt.Color(204, 204, 204));

@@ -60,7 +60,7 @@ public class MainFrame extends javax.swing.JFrame {
         theButton2.setBackground(new java.awt.Color(204, 204, 204));
         theButton2.setForeground(new java.awt.Color(128, 128, 131));
         theButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/imgs/icons/market.png"))); // NOI18N
-        theButton2.setText("Crear Tarea");
+        theButton2.setText("Gestionar Tareas");
         theButton2.setColorHover(new java.awt.Color(204, 204, 204));
         theButton2.setColorNormal(new java.awt.Color(204, 204, 204));
         theButton2.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -80,8 +80,8 @@ public class MainFrame extends javax.swing.JFrame {
             menubarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menubarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(theButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(theButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(theButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
