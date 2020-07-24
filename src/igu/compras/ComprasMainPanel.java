@@ -6,7 +6,7 @@
 package igu.compras;
 
 import igu.ChangePanel;
-import igu.compras.clientes.ClientesPanel;
+import igu.compras.clientes.ReportePanel;
 import igu.compras.clientes.ProductosPanel;
 import igu.compras.panels.ComprasPanel;
 import java.awt.Color;

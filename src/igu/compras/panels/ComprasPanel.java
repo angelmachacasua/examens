@@ -8,7 +8,7 @@ package igu.compras.panels;
 import igu.ChangePanel;
 import static igu.MainFrame.mainPanel;
 import igu.compras.ComprasMainPanel;
-import igu.compras.clientes.ClientesPanel;
+import igu.compras.clientes.ReportePanel;
 import javafx.collections.ListChangeListener;
 
 /**
@@ -33,13 +33,12 @@ public class ComprasPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        Usar = new igu.util.buttons.TheButton();
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("CLIENTE");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Usar.setText("REPORTE DE TAREAS");
+        Usar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                UsarActionPerformed(evt);
             }
         });
 
@@ -48,26 +47,24 @@ public class ComprasPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jButton1)
-                .addContainerGap(835, Short.MAX_VALUE))
+                .addComponent(Usar, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 753, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(482, Short.MAX_VALUE))
+                .addComponent(Usar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 483, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                new ChangePanel(mainPanel, new ClientesPanel());
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void UsarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsarActionPerformed
+  new ChangePanel(mainPanel, new ReportePanel());      
+  // TODO add your handling code here:
+    }//GEN-LAST:event_UsarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private igu.util.buttons.TheButton Usar;
     // End of variables declaration//GEN-END:variables
 }

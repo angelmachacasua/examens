@@ -59,91 +59,40 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="theButton2" min="-2" pref="304" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="theButton3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nuevoButton1" min="-2" pref="324" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="nuevoButton" min="-2" pref="295" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="theButton3" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="theButton2" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="nuevoButton1" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="nuevoButton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="igu.util.buttons.TheButton" name="theButton3">
+            <Component class="igu.util.buttons.TheButton" name="nuevoButton1">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="f4" green="ee" red="ef" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="83" green="80" red="80" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/igu/imgs/icons/collection.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="AYUDA"/>
-                <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                </Property>
-                <Property name="colorNormal" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="f4" green="ee" red="ef" type="rgb"/>
-                </Property>
-                <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                </Property>
-                <Property name="colorTextHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="83" green="80" red="80" type="rgb"/>
-                </Property>
-                <Property name="colorTextNormal" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="83" green="80" red="80" type="rgb"/>
-                </Property>
-                <Property name="colorTextPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="83" green="80" red="80" type="rgb"/>
-                </Property>
-                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="GESTOR DE TAREAS"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="theButton3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoButton1ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="igu.util.buttons.TheButton" name="theButton2">
+            <Component class="igu.util.buttons.TheButton" name="nuevoButton">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="83" green="80" red="80" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/igu/imgs/icons/market.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="GESTOR DE TAREAS"/>
-                <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                </Property>
-                <Property name="colorNormal" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                </Property>
-                <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                </Property>
-                <Property name="colorTextHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="83" green="80" red="80" type="rgb"/>
-                </Property>
-                <Property name="colorTextNormal" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="83" green="80" red="80" type="rgb"/>
-                </Property>
-                <Property name="colorTextPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="83" green="80" red="80" type="rgb"/>
-                </Property>
-                <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="theButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

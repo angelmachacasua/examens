@@ -18,11 +18,11 @@ import util.MsgPanel;
  *
  * @author Asullom
  */
-public class ClientesPanel extends javax.swing.JPanel {
+public class ReportePanel extends javax.swing.JPanel {
 
     ClientesTableModel clientesTableModel = new ClientesTableModel();
 
-    public ClientesPanel() {
+    public ReportePanel() {
         initComponents();
         //table.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
         //table.setDefaultRenderer(Object.class, new EstiloTablaRenderer());
@@ -519,8 +519,8 @@ public class ClientesPanel extends javax.swing.JPanel {
             ExportarExcel obj = new ExportarExcel();
             obj.exportarExcel(table);
         } catch (IOException ex) {
-            ErrorLogger.log(Level.SEVERE, ClientesPanel.class.getName() + ".ExportarExcel", ex);
-            //Logger.getLogger(ClientesPanel.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorLogger.log(Level.SEVERE, ReportePanel.class.getName() + ".ExportarExcel", ex);
+            //Logger.getLogger(ReportePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_theButton4ActionPerformed
 
