@@ -462,11 +462,14 @@ public class TareaPanel extends javax.swing.JPanel {
             Tarea s = new Tarea();
             s.setAsignatura(asignatura.getText());
             s.setDetalles(detalles.getText());
+            
+            
           
             if (fecha_entrega.getDate() == null) {
                 fecha_entrega.setDate(new Date());
             }
-            s.setFecha_vencimiento(fecha_entrega.getDate());
+            s.setFecha_entrega(fecha_entrega.getDate());
+            
             
             if (fecha_vencimiento.getDate() == null) {
                 fecha_vencimiento.setDate(new Date());

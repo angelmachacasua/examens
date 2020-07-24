@@ -31,8 +31,8 @@ public class TareaData {
     public static int create(Tarea d) {
         int rsId = 0;
         String[] returns = {"id"};
-        String sql = "INSERT INTO tarea(asignatura, detalles, fecha_entrega, fecha_vencimiento) "
-                + "VALUES(?,?,?,?)";
+        String sql = "INSERT INTO tarea(asignatura, detalles, fecha_entrega, fecha_vencimiento, date_created) "
+                + "VALUES(?,?,?,?,?)";
         int i = 0;
         try {
             ps = cn.prepareStatement(sql, returns);
@@ -40,9 +40,10 @@ public class TareaData {
             ps.setString(++i, d.getDetalles());
             
             ps.setString(++i, sdf.format(d.getFecha_entrega()));
-            rsId = ps.executeUpdate();//fecha entrega
+            
             
             ps.setString(++i, sdf.format(d.getFecha_vencimiento()));
+            ps.setString(++i, sdf.format(dt));
             rsId = ps.executeUpdate();// 0 no o 1 si commit
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
