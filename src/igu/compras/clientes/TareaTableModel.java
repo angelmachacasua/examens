@@ -1,7 +1,7 @@
 package igu.compras.clientes;
 
-import data.ProductoData;
-import entities.Producto;
+import data.TareaData;
+import entities.Tarea;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,37 +13,37 @@ import util.Config;
  *
  * @author Asullom
  */
-public class ProductosTableModel extends AbstractTableModel {
+public class TareaTableModel extends AbstractTableModel {
 
-    private List<Producto> lis = new ArrayList();
-    private String[] columns = {"#", "Nombres", "Cod", "Precio", "Fecha ven"};
-    private Class[] columnsType = {Integer.class, String.class, String.class, Double.class, String.class};// Date.class
+    private List<Tarea> lis = new ArrayList();
+    private String[] columns = {"#", "Asignatura", "Detalles", "Fecha Entrega", "Fecha Vencimiento"};
+    private Class[] columnsType = {Integer.class, String.class, String.class, String.class, String.class};// Date.class
     
     SimpleDateFormat iguSDF = new SimpleDateFormat(Config.DEFAULT_DATE_STRING_FORMAT_PE);
     
 
-    public ProductosTableModel() {
-        lis = ProductoData.list("");
+    public TareaTableModel() {
+        lis = TareaData.list("");
     }
 
-    public ProductosTableModel(String filter) {
-        lis = ProductoData.list(filter);
+    public TareaTableModel(String filter) {
+        lis = TareaData.list(filter);
     }
 
     @Override
     public Object getValueAt(int row, int column) {
-        Producto d = (Producto) lis.get(row);
+        Tarea d = (Tarea) lis.get(row);
         switch (column) {
             case 0:
                 return row + 1;
             case 1:
-                return d.getNombres();
+                return d.getAsignatura();
             case 2:
-                return d.getCod();
+                return d.getDetalles();
             case 3:
-                return d.getPrecio();
+                return iguSDF.format(d.getFecha_entrega()); //return (d.getFecha_ven(); 
             case 4:
-                return iguSDF.format(d.getFecha_ven()); //return (d.getFecha_ven(); 
+                return iguSDF.format(d.getFecha_vencimiento()); //return (d.getFecha_ven(); 
             default:
                 return null;
         }
@@ -52,7 +52,7 @@ public class ProductosTableModel extends AbstractTableModel {
     /*
     @Override
     public void setValueAt(Object valor, int row, int column) {
-        Producto d = (Producto) lis.get(row);
+        Tarea d = (Tarea) lis.get(row);
         switch (column) {
             
            // case 0:
@@ -68,10 +68,10 @@ public class ProductosTableModel extends AbstractTableModel {
              //   break;
              
             case 1:
-                d.setNombres("" + valor);
+                d.setAsignatura("" + valor);
                 break;
             case 2:
-                d.setCod("" + valor);
+                d.setDetalles("" + valor);
                 break;
 
         }
@@ -81,7 +81,7 @@ public class ProductosTableModel extends AbstractTableModel {
      */
     @Override
     public boolean isCellEditable(int row, int column) {
-        //Producto c = (Producto) lis.get(row);
+        //Tarea c = (Tarea) lis.get(row);
         if (column >= 0 && column != 0) {
             //return true;
         }
@@ -108,7 +108,7 @@ public class ProductosTableModel extends AbstractTableModel {
         return columns.length;
     }
 
-    public void addRow(Producto d) { // con db no se usa
+    public void addRow(Tarea d) { // con db no se usa
         this.lis.add(d);
         //this.fireTableDataChanged();
         this.fireTableRowsInserted(lis.size(), lis.size());

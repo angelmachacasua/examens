@@ -89,7 +89,7 @@
             </Component>
             <Component class="igu.util.buttons.TheButton" name="nuevoButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="GESTOR DE TAREAS"/>
+                <Property name="text" type="java.lang.String" value="AYUDA"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoButtonActionPerformed"/>

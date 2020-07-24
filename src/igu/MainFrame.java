@@ -50,7 +50,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        nuevoButton.setText("GESTOR DE TAREAS");
+        nuevoButton.setText("AYUDA");
         nuevoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoButtonActionPerformed(evt);

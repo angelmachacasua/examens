@@ -1,7 +1,7 @@
 package igu.compras.clientes;
 
-import data.ProductoData;
-import entities.Producto;
+import data.TareaData;
+import entities.Tarea;
 import igu.util.tables.ExportarExcel;
 import java.awt.Color;
 
@@ -20,11 +20,11 @@ import util.MsgPanel;
  *
  * @author Asullom
  */
-public class ProductosPanel extends javax.swing.JPanel {
+public class TareaPanel extends javax.swing.JPanel {
 
-    ProductosTableModel prodTableModel = new ProductosTableModel();
+    TareaTableModel prodTableModel = new TareaTableModel();
 
-    public ProductosPanel() {
+    public TareaPanel() {
         initComponents();
         //table.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
         //table.setDefaultRenderer(Object.class, new EstiloTablaRenderer());
@@ -34,13 +34,13 @@ public class ProductosPanel extends javax.swing.JPanel {
     }
 
     private void resetForm() {
-        nombres.requestFocus();
-        nombres.setText("");
-        cod.setText("");
+        asignatura.requestFocus();
+        asignatura.setText("");
+        detalles.setText("");
         MsgPanel.msg("");
     }
 
-    private void paintTable(ProductosTableModel tableModel) {
+    private void paintTable(TareaTableModel tableModel) {
         this.prodTableModel = tableModel;
         table.setModel(tableModel);
         table.getColumnModel().getColumn(0).setMaxWidth(35);
@@ -49,12 +49,14 @@ public class ProductosPanel extends javax.swing.JPanel {
 
     private void paintForm() {
         if (table.getSelectedRow() != -1) {
-            Producto filax = (Producto) prodTableModel.getRow(table.getSelectedRow());
-            Producto d = ProductoData.getByPId(filax.getId());
-            nombres.setText(d.getNombres());
-            cod.setText(d.getCod());
-            precio.setText(d.getPrecio() + "");
-            fecha_ven.setDate(d.getFecha_ven());
+            Tarea filax = (Tarea) prodTableModel.getRow(table.getSelectedRow());
+            Tarea d = TareaData.getByPId(filax.getId());
+            asignatura.setText(d.getAsignatura());
+            detalles.setText(d.getDetalles());
+           
+            fecha_vencimiento.setDate(d.getFecha_entrega());
+            fecha_vencimiento.setDate(d.getFecha_vencimiento());
+            
             System.out.printf("getId:%d getSelectedRow:%d \n", d.getId(), table.getSelectedRow());
 
             guardarButton.setText("MODIFICAR");
@@ -86,14 +88,14 @@ public class ProductosPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        nombres = new javax.swing.JTextField();
+        asignatura = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         msgPanel1 = new util.MsgPanel();
-        cod = new javax.swing.JTextField();
+        detalles = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        precio = new javax.swing.JFormattedTextField();
-        fecha_ven = new com.toedter.calendar.JDateChooser();
+        fecha_vencimiento = new com.toedter.calendar.JDateChooser();
+        fecha_entrega = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -197,53 +199,58 @@ public class ProductosPanel extends javax.swing.JPanel {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Nombres:");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Asigantura:");
 
-        nombres.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        nombres.addKeyListener(new java.awt.event.KeyAdapter() {
+        asignatura.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        asignatura.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                nombresKeyReleased(evt);
+                asignaturaKeyReleased(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Codigo:");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Detalles:");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Precio:");
+        detalles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                detallesActionPerformed(evt);
+            }
+        });
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Fecha Venc:");
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Fecha Entrega:");
 
-        precio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("Fecha Vencimiento:");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(msgPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fecha_ven, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(precio))
-                        .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(detalles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(asignatura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(msgPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(fecha_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fecha_vencimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(54, 54, 54))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,20 +258,20 @@ public class ProductosPanel extends javax.swing.JPanel {
                 .addComponent(msgPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(detalles, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(9, 9, 9)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(fecha_ven, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8)
+                    .addComponent(fecha_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fecha_vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -321,7 +328,7 @@ public class ProductosPanel extends javax.swing.JPanel {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -447,32 +454,34 @@ public class ProductosPanel extends javax.swing.JPanel {
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
         // TODO add your handling code here:
-        if (nombres.getText().trim().isEmpty()) {
-            nombres.requestFocus();
-            nombres.setBorder(new LineBorder(new java.awt.Color(255, 0, 0), 3));
-            MsgPanel.msg("Nombre es requerido", true);
+        if (asignatura.getText().trim().isEmpty()) {
+            asignatura.requestFocus();
+            asignatura.setBorder(new LineBorder(new java.awt.Color(255, 0, 0), 3));
+            MsgPanel.msg("Asignatura es requerido", true);
         } else {
-            Producto s = new Producto();
-            s.setNombres(nombres.getText());
-            s.setCod(cod.getText());
-            if (precio.getText().equals("")) {
-                precio.setText("0");
+            Tarea s = new Tarea();
+            s.setAsignatura(asignatura.getText());
+            s.setDetalles(detalles.getText());
+          
+            if (fecha_entrega.getDate() == null) {
+                fecha_entrega.setDate(new Date());
             }
-            s.setPrecio(Double.parseDouble(precio.getText().replaceAll(",", "")));
-            if (fecha_ven.getDate() == null) {
-                fecha_ven.setDate(new Date());
+            s.setFecha_vencimiento(fecha_entrega.getDate());
+            
+            if (fecha_vencimiento.getDate() == null) {
+                fecha_vencimiento.setDate(new Date());
             }
-            s.setFecha_ven(fecha_ven.getDate());
+            s.setFecha_vencimiento(fecha_vencimiento.getDate());
 
             if (table.getSelectedRow() != -1) {// ha seleccionado, update
                 try {
-                    Producto fila = (Producto) prodTableModel.getRow(table.getSelectedRow());
+                    Tarea fila = (Tarea) prodTableModel.getRow(table.getSelectedRow());
                     s.setId(fila.getId());
                     System.out.println("id:" + s.getId());
                     if (s.getId() > 0) {
-                        int returnId = ProductoData.update(s);
+                        int returnId = TareaData.update(s);
                         if (returnId != 0) {
-                            paintTable(new ProductosTableModel());
+                            paintTable(new TareaTableModel());
                             resetForm();
                             System.out.println("si modificado: " + returnId);
                         }
@@ -482,9 +491,9 @@ public class ProductosPanel extends javax.swing.JPanel {
                 }
             } else { // sin seleccionar, insert
                 try {
-                    int returnId = ProductoData.create(s);
+                    int returnId = TareaData.create(s);
                     if (returnId != 0) {
-                        paintTable(new ProductosTableModel());
+                        paintTable(new TareaTableModel());
                         // s.setId(returnId);//necesitamos subir el id, ya no
                         //tableModel.addRow(s);
                         resetForm();
@@ -521,13 +530,13 @@ public class ProductosPanel extends javax.swing.JPanel {
             try {
                 int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea eliminar?", "Quitar", JOptionPane.YES_NO_OPTION);
                 if (opc == JOptionPane.OK_OPTION) {
-                    Producto fila = (Producto) prodTableModel.getRow(table.getSelectedRow());
+                    Tarea fila = (Tarea) prodTableModel.getRow(table.getSelectedRow());
                     System.out.printf("eliminarButtonActionPerformed getId:%d getSelectedRow:%d \n", fila.getId(), table.getSelectedRow());
 
-                    int opcion = ProductoData.delete(fila.getId());
+                    int opcion = TareaData.delete(fila.getId());
                     if (opcion != 0) {
                         //tableModel.removeRow(table.getSelectedRow());
-                        paintTable(new ProductosTableModel());
+                        paintTable(new TareaTableModel());
                         resetForm();
                         guardarButton.setText("REGISTRAR");
                         guardarButton.setToolTipText("REGISTRAR");
@@ -543,7 +552,7 @@ public class ProductosPanel extends javax.swing.JPanel {
 
     private void buscarFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarFieldKeyReleased
         // TODO add your handling code here:
-        ProductosTableModel tableModel = new ProductosTableModel(buscarField.getText());
+        TareaTableModel tableModel = new TareaTableModel(buscarField.getText());
         paintTable(tableModel);
 
     }//GEN-LAST:event_buscarFieldKeyReleased
@@ -554,27 +563,33 @@ public class ProductosPanel extends javax.swing.JPanel {
             ExportarExcel obj = new ExportarExcel();
             obj.exportarExcel(table);
         } catch (IOException ex) {
-            ErrorLogger.log(Level.SEVERE, ProductosPanel.class.getName() + ".ExportarExcel", ex);
-            //Logger.getLogger(ProductosPanel.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorLogger.log(Level.SEVERE, TareaPanel.class.getName() + ".ExportarExcel", ex);
+            //Logger.getLogger(TareasPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_theButton4ActionPerformed
 
-    private void nombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombresKeyReleased
+    private void asignaturaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_asignaturaKeyReleased
         // TODO add your handling code here:
-        if (!nombres.getText().trim().isEmpty()) { //reset
-            nombres.setBorder(new LineBorder(new java.awt.Color(0, 0, 0), 1));
+        if (!asignatura.getText().trim().isEmpty()) { //reset
+            asignatura.setBorder(new LineBorder(new java.awt.Color(0, 0, 0), 1));
             MsgPanel.msg("");
         } else {
-            nombres.setBorder(new LineBorder(new java.awt.Color(255, 0, 0), 3));
+            asignatura.setBorder(new LineBorder(new java.awt.Color(255, 0, 0), 3));
             MsgPanel.msg("Nombre es requerido", true);
         }
-    }//GEN-LAST:event_nombresKeyReleased
+    }//GEN-LAST:event_asignaturaKeyReleased
+
+    private void detallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_detallesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField asignatura;
     private javax.swing.JTextField buscarField;
-    private javax.swing.JTextField cod;
+    private javax.swing.JTextField detalles;
     private igu.util.buttons.TheButton eliminarButton;
-    private com.toedter.calendar.JDateChooser fecha_ven;
+    private com.toedter.calendar.JDateChooser fecha_entrega;
+    private com.toedter.calendar.JDateChooser fecha_vencimiento;
     private igu.util.buttons.TheButton guardarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -597,9 +612,7 @@ public class ProductosPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane3;
     private util.MsgPanel msgPanel1;
-    private javax.swing.JTextField nombres;
     private igu.util.buttons.TheButton nuevoButton;
-    private javax.swing.JFormattedTextField precio;
     private javax.swing.JTable table;
     private igu.util.buttons.TheButton theButton4;
     // End of variables declaration//GEN-END:variables
