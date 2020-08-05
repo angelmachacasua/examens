@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entities;
 
 import java.util.Date;
 
-/**
- *
- * @author HP
- */
 public class Tarea {
     private int id;
     private String asignatura;
@@ -66,4 +57,15 @@ public class Tarea {
     public void setDate_created(Date date_created) {
         this.date_created = date_created;
     }
+    public Tarea (){
+        
+        
+    }
+    public Tarea (String nombre){
+        this.asignatura = nombre;
+        
+    }
+    public String toString(){
+        return asignatura;
+}
 }

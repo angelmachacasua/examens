@@ -185,9 +185,7 @@ public class TareaData {
                 } catch (Exception e) {
                 }
                 
-                
-                
-                String fecha = rs.getString("fecha_vencimiento");
+                 String fecha = rs.getString("fecha_vencimiento");
                 try {
                     Date date = sdf.parse(fecha);
                     d.setFecha_vencimiento(date);

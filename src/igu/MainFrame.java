@@ -10,7 +10,7 @@ import igu.compras.ComprasMainPanel;
 import igu.compras.clientes.ReportePanel;
 import igu.compras.panels.ComprasPanel;
 
-/**
+/**z
  *
  * @author Asullom
  */

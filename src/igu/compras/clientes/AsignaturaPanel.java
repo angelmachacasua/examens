@@ -1,19 +1,14 @@
 package igu.compras.clientes;
 
 import data.AsignaturaData;
-import data.TareaData;
 import entities.Asignatura;
-import entities.Tarea;
 import igu.util.tables.ExportarExcel;
 import java.awt.Color;
-import java.awt.event.ItemEvent;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
@@ -25,29 +20,27 @@ import util.MsgPanel;
  *
  * @author Asullom
  */
-public class TareaPanel extends javax.swing.JPanel {
+public class AsignaturaPanel extends javax.swing.JPanel {
 
-    TareaTableModel prodTableModel = new TareaTableModel();
+    AsignaturaTableModel prodTableModel = new AsignaturaTableModel();
 
-    public TareaPanel() {
+    public AsignaturaPanel() {
         initComponents();
         //table.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
         //table.setDefaultRenderer(Object.class, new EstiloTablaRenderer());
         table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         resetForm();
-        listadecursos=AsignaturaData.listCmb("");
-        combomodel=new DefaultComboBoxModel(listadecursos.toArray());
-        comboasig.setModel(combomodel);
         paintTable(prodTableModel);
     }
 
     private void resetForm() {
-       
+        asignatura.requestFocus();
+        asignatura.setText("");
         detalles.setText("");
         MsgPanel.msg("");
     }
 
-    private void paintTable(TareaTableModel tableModel) {
+    private void paintTable(AsignaturaTableModel tableModel) {
         this.prodTableModel = tableModel;
         table.setModel(tableModel);
         table.getColumnModel().getColumn(0).setMaxWidth(35);
@@ -56,13 +49,13 @@ public class TareaPanel extends javax.swing.JPanel {
 
     private void paintForm() {
         if (table.getSelectedRow() != -1) {
-            Tarea filax = (Tarea) prodTableModel.getRow(table.getSelectedRow());
-            Tarea d = TareaData.getByPId(filax.getId());
-            comboasig.getSelectedItem().toString();
-            detalles.setText(d.getDetalles());
+            Asignatura filax = (Asignatura) prodTableModel.getRow(table.getSelectedRow());
+            Asignatura d = AsignaturaData.getByPId(filax.getId());
+            asignatura.setText(d.getAsignatura());
+            //detalles.setText(d.getDetalles());
            
-            fecha_vencimiento.setDate(d.getFecha_entrega());
-            fecha_vencimiento.setDate(d.getFecha_vencimiento());
+            //fecha_vencimiento.setDate(d.getFecha_entrega());
+           // fecha_vencimiento.setDate(d.getFecha_vencimiento());
             
             System.out.printf("getId:%d getSelectedRow:%d \n", d.getId(), table.getSelectedRow());
 
@@ -81,7 +74,6 @@ public class TareaPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -96,14 +88,10 @@ public class TareaPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        asignatura = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         msgPanel1 = new util.MsgPanel();
         detalles = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        fecha_vencimiento = new com.toedter.calendar.JDateChooser();
-        fecha_entrega = new com.toedter.calendar.JDateChooser();
-        comboasig = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -121,7 +109,7 @@ public class TareaPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/imgs/icons/tareas.png"))); // NOI18N
-        jLabel1.setText("TAREA");
+        jLabel1.setText("CURSOS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -210,6 +198,18 @@ public class TareaPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Asigantura:");
 
+        asignatura.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        asignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignaturaActionPerformed(evt);
+            }
+        });
+        asignatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                asignaturaKeyReleased(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Detalles:");
 
@@ -220,77 +220,34 @@ public class TareaPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Fecha Entrega:");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("Fecha Vencimiento:");
-
-        comboasig.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, new javax.swing.JTextField(), org.jdesktop.beansbinding.ObjectProperty.create(), comboasig, org.jdesktop.beansbinding.BeanProperty.create("elements"));
-        bindingGroup.addBinding(binding);
-
-        comboasig.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboasigItemStateChanged(evt);
-            }
-        });
-        comboasig.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboasigActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(msgPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(msgPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(detalles, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fecha_vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fecha_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(comboasig, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                    .addComponent(detalles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(asignatura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(msgPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboasig, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(52, 52, 52))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(detalles, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)))
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel9))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(fecha_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fecha_vencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(detalles, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -318,13 +275,13 @@ public class TareaPanel extends javax.swing.JPanel {
         table.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2"
             }
         ));
         table.setDoubleBuffered(true);
@@ -346,9 +303,9 @@ public class TareaPanel extends javax.swing.JPanel {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 150, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,20 +426,22 @@ public class TareaPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
         // TODO add your handling code here:
-        
-            Tarea s = new Tarea();
-            s.setAsignatura(comboasig.getSelectedItem().toString());
-            s.setDetalles(detalles.getText());
+        if (asignatura.getText().trim().isEmpty()) {
+            asignatura.requestFocus();
+            asignatura.setBorder(new LineBorder(new java.awt.Color(255, 0, 0), 3));
+            MsgPanel.msg("Asignatura es requerido", true);
+        } else {
+            Asignatura s = new Asignatura();
+            s.setAsignatura(asignatura.getText());
+          //  s.setDetalles(detalles.getText());
             
             
           
-            if (fecha_entrega.getDate() == null) {
+           /* if (fecha_entrega.getDate() == null) {
                 fecha_entrega.setDate(new Date());
             }
             s.setFecha_entrega(fecha_entrega.getDate());
@@ -491,17 +450,17 @@ public class TareaPanel extends javax.swing.JPanel {
             if (fecha_vencimiento.getDate() == null) {
                 fecha_vencimiento.setDate(new Date());
             }
-            s.setFecha_vencimiento(fecha_vencimiento.getDate());
+            s.setFecha_vencimiento(fecha_vencimiento.getDate());*/
 
             if (table.getSelectedRow() != -1) {// ha seleccionado, update
                 try {
-                    Tarea fila = (Tarea) prodTableModel.getRow(table.getSelectedRow());
+                    Asignatura fila = (Asignatura) prodTableModel.getRow(table.getSelectedRow());
                     s.setId(fila.getId());
                     System.out.println("id:" + s.getId());
                     if (s.getId() > 0) {
-                        int returnId = TareaData.update(s);
+                        int returnId = AsignaturaData.update(s);
                         if (returnId != 0) {
-                            paintTable(new TareaTableModel());
+                            paintTable(new AsignaturaTableModel());
                             resetForm();
                             System.out.println("si modificado: " + returnId);
                         }
@@ -511,9 +470,9 @@ public class TareaPanel extends javax.swing.JPanel {
                 }
             } else { // sin seleccionar, insert
                 try {
-                    int returnId = TareaData.create(s);
+                    int returnId = AsignaturaData.create(s);
                     if (returnId != 0) {
-                        paintTable(new TareaTableModel());
+                        paintTable(new AsignaturaTableModel());
                         // s.setId(returnId);//necesitamos subir el id, ya no
                         //tableModel.addRow(s);
                         resetForm();
@@ -523,7 +482,7 @@ public class TareaPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "No se puede insertar: " + ex.getMessage());
                 }
             }
-        
+        }
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
@@ -550,13 +509,13 @@ public class TareaPanel extends javax.swing.JPanel {
             try {
                 int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea eliminar?", "Quitar", JOptionPane.YES_NO_OPTION);
                 if (opc == JOptionPane.OK_OPTION) {
-                    Tarea fila = (Tarea) prodTableModel.getRow(table.getSelectedRow());
+                    Asignatura fila = (Asignatura) prodTableModel.getRow(table.getSelectedRow());
                     System.out.printf("eliminarButtonActionPerformed getId:%d getSelectedRow:%d \n", fila.getId(), table.getSelectedRow());
 
-                    int opcion = TareaData.delete(fila.getId());
+                    int opcion = AsignaturaData.delete(fila.getId());
                     if (opcion != 0) {
                         //tableModel.removeRow(table.getSelectedRow());
-                        paintTable(new TareaTableModel());
+                        paintTable(new AsignaturaTableModel());
                         resetForm();
                         guardarButton.setText("REGISTRAR");
                         guardarButton.setToolTipText("REGISTRAR");
@@ -572,7 +531,7 @@ public class TareaPanel extends javax.swing.JPanel {
 
     private void buscarFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarFieldKeyReleased
         // TODO add your handling code here:
-        TareaTableModel tableModel = new TareaTableModel(buscarField.getText());
+        AsignaturaTableModel tableModel = new AsignaturaTableModel(buscarField.getText());
         paintTable(tableModel);
 
     }//GEN-LAST:event_buscarFieldKeyReleased
@@ -583,34 +542,35 @@ public class TareaPanel extends javax.swing.JPanel {
             ExportarExcel obj = new ExportarExcel();
             obj.exportarExcel(table);
         } catch (IOException ex) {
-            ErrorLogger.log(Level.SEVERE, TareaPanel.class.getName() + ".ExportarExcel", ex);
-            //Logger.getLogger(TareasPanel.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorLogger.log(Level.SEVERE, AsignaturaPanel.class.getName() + ".ExportarExcel", ex);
+            //Logger.getLogger(AsignaturasPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_theButton4ActionPerformed
+
+    private void asignaturaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_asignaturaKeyReleased
+        // TODO add your handling code here:
+        if (!asignatura.getText().trim().isEmpty()) { //reset
+            asignatura.setBorder(new LineBorder(new java.awt.Color(0, 0, 0), 1));
+            MsgPanel.msg("");
+        } else {
+            asignatura.setBorder(new LineBorder(new java.awt.Color(255, 0, 0), 3));
+            MsgPanel.msg("Asignatura requerida", true);
+        }
+    }//GEN-LAST:event_asignaturaKeyReleased
 
     private void detallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_detallesActionPerformed
 
-    private void comboasigItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboasigItemStateChanged
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            cursoseleccionado=(Asignatura)comboasig.getSelectedItem();
-            List<Asignatura> asignatura = AsignaturaData.listArticlesById(cursoseleccionado.getId());
-        }
-        
-    }//GEN-LAST:event_comboasigItemStateChanged
-
-    private void comboasigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboasigActionPerformed
+    private void asignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignaturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboasigActionPerformed
+    }//GEN-LAST:event_asignaturaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField asignatura;
     private javax.swing.JTextField buscarField;
-    private javax.swing.JComboBox<String> comboasig;
     private javax.swing.JTextField detalles;
     private igu.util.buttons.TheButton eliminarButton;
-    private com.toedter.calendar.JDateChooser fecha_entrega;
-    private com.toedter.calendar.JDateChooser fecha_vencimiento;
     private igu.util.buttons.TheButton guardarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -619,8 +579,6 @@ public class TareaPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -636,12 +594,5 @@ public class TareaPanel extends javax.swing.JPanel {
     private igu.util.buttons.TheButton nuevoButton;
     private javax.swing.JTable table;
     private igu.util.buttons.TheButton theButton4;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
-    private Asignatura cursoseleccionado;
-    private List<Asignatura> listadecursos;
-    private DefaultComboBoxModel combomodel;
-    
-
-
 }
